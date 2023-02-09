@@ -23,4 +23,14 @@ $ ./manage.py migrate
 ```shell
 $ ./manage.py runserver
 ```
-7. 
+7. Create Super User
+```shell
+$ ./mange.py createsuperuser
+```
+Fill details and remember credentials 
+8. Run server
+```shell
+./manage.py runserver
+```
+Visit [admin](http://127.0.0.1:8000/admin) and enter credentials
+9. 
