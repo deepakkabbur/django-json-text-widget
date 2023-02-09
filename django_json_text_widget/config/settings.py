@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,11 +19,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
+# Set parent directory for environ
+base = environ.Path(__file__) - 4
+# Rediang file and export env variables
+environ.Env.read_env(env_file=base(".env"))
+env = environ.Env()
+
+# update following
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-x+-7@#khfozf=x!1&f!#8gsmxo)ddvlhp32lnu28a&m+=tvo0t"
+SECRET_KEY = env("SECRET_KEY", default="django-insecure-x+-7@#khfozf=x!1&f!#8gsmxo)ddvlhp32lnu28a&m+=tvo0t")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG", default=True)
 
 ALLOWED_HOSTS = []
 
@@ -71,14 +78,9 @@ WSGI_APPLICATION = "django_json_text_widget.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+DATABASES = {"default": env.db()}
 
 
 # Password validation
