@@ -1,4 +1,4 @@
-# django-json-text-widget
+# Json Localization Field
 
 ## Setup
 
@@ -33,4 +33,23 @@ Fill details and remember credentials
 ./manage.py runserver
 ```
 Visit [admin](http://127.0.0.1:8000/admin) and enter credentials
-9. 
+
+
+## How to use JsonLocalizationField
+1. Configure LANGUAGES in settings.py
+```python
+LANGUAGES = [
+    ('en', _('English')),
+    ('fr', _('French')),
+]
+```
+2. Set default language which is considered as mandatory language
+```python
+LANGUAGE_CODE = 'en'
+```
+3. Create form and use JsonLocalizationField for json field
+```python
+class ArticleForm(forms.Form):
+    title = JsonLocalizationField()
+```
+4. screens
