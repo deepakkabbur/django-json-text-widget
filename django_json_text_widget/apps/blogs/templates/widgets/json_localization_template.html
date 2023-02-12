@@ -1,0 +1,12 @@
+{% spaceless %}
+<div>
+{% for widget in widget.subwidgets %}
+<!--{% include widget.template_name %}-->
+<div>
+    <label style="float:none;">{{ widget.name|title }}</label>
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %}>
+</div>
+
+{% endfor %}
+{% endspaceless %}
+</div>

@@ -31,7 +31,7 @@ env = environ.Env()
 
 # update following
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY", default="django-insecure-x+-7@#khfozf=x!1&f!#8gsmxo)ddvlhp32lnu28a&m+=tvo0t")
+SECRET_KEY = env("SECRET_KEY", default="dev_secrete_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG", default=True)
@@ -69,7 +69,7 @@ ROOT_URLCONF = "django_json_text_widget.config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "common/templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
